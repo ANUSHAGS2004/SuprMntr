@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Smart Signup Form</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#f2f2f2;
+text-align:center;
+}
+
+.container{
+background:white;
+width:350px;
+margin:auto;
+margin-top:80px;
+padding:20px;
+border-radius:10px;
+box-shadow:0 0 10px gray;
+}
+
+input{
+width:90%;
+padding:8px;
+margin:8px;
+}
+
+button{
+padding:10px 15px;
+background:blue;
+color:white;
+border:none;
+cursor:pointer;
+}
+
+.error{
+color:red;
+font-size:14px;
+}
+
+.success{
+color:green;
+font-weight:bold;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Signup Form</h2>
+
+<input type="text" id="name" placeholder="Enter Name">
+<div id="nameError" class="error"></div>
+
+<input type="text" id="email" placeholder="Enter Email">
+<div id="emailError" class="error"></div>
+
+<input type="password" id="password" placeholder="Enter Password">
+<div id="passError" class="error"></div>
+
+<input type="password" id="confirm" placeholder="Confirm Password">
+<div id="confirmError" class="error"></div>
+
+<button onclick="validate()">Register</button>
+
+<p id="successMessage" class="success"></p>
+
+</div>
+
+<script>
+
+function validate(){
+
+let name=document.getElementById("name").value;
+let email=document.getElementById("email").value;
+let password=document.getElementById("password").value;
+let confirm=document.getElementById("confirm").value;
+
+document.getElementById("nameError").innerHTML="";
+document.getElementById("emailError").innerHTML="";
+document.getElementById("passError").innerHTML="";
+document.getElementById("confirmError").innerHTML="";
+document.getElementById("successMessage").innerHTML="";
+
+let valid=true;
+
+if(name.length<3){
+document.getElementById("nameError").innerHTML="Name must be at least 3 characters";
+valid=false;
+}
+
+if(!email.includes("@")){
+document.getElementById("emailError").innerHTML="Enter valid email";
+valid=false;
+}
+
+if(password.length<6){
+document.getElementById("passError").innerHTML="Password must be at least 6 characters";
+valid=false;
+}
+
+if(password!==confirm){
+document.getElementById("confirmError").innerHTML="Passwords do not match";
+valid=false;
+}
+
+if(valid){
+document.getElementById("successMessage").innerHTML="Registration Successful!";
+}
+
+}
+
+</script>
+
+</body>
+</html>

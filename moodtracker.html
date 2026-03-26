@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Mood Tracker</title>
+
+<style>
+body{
+font-family:Arial;
+text-align:center;
+background:#f2f2f2;
+}
+
+button{
+padding:10px 20px;
+margin:10px;
+font-size:16px;
+cursor:pointer;
+}
+
+#mood{
+margin-top:20px;
+font-size:20px;
+font-weight:bold;
+}
+</style>
+
+</head>
+
+<body>
+
+<h2>Daily Mood Tracker</h2>
+
+<p>Select your mood</p>
+
+<button onclick="setMood('😊 Happy')">Happy</button>
+<button onclick="setMood('😐 Neutral')">Neutral</button>
+<button onclick="setMood('😢 Sad')">Sad</button>
+<button onclick="setMood('😴 Tired')">Tired</button>
+
+<div id="mood">Your mood will appear here</div>
+
+<script>
+
+function setMood(m){
+document.getElementById("mood").innerHTML = "Today's Mood: " + m;
+}
+
+</script>
+
+</body>
+</html>

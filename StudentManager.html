@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Student Management System</title>
+
+<style>
+
+body{
+font-family: Arial;
+background:#f4f6f9;
+text-align:center;
+}
+
+h1{
+color:#333;
+}
+
+.container{
+width:80%;
+margin:auto;
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0px 0px 10px gray;
+}
+
+input{
+padding:10px;
+margin:5px;
+width:150px;
+}
+
+button{
+padding:10px 15px;
+margin:5px;
+border:none;
+background:#007BFF;
+color:white;
+cursor:pointer;
+border-radius:5px;
+}
+
+button:hover{
+background:#0056b3;
+}
+
+table{
+width:100%;
+margin-top:20px;
+border-collapse:collapse;
+}
+
+th{
+background:#28a745;
+color:white;
+padding:10px;
+}
+
+td{
+padding:10px;
+border:1px solid #ccc;
+}
+
+.deleteBtn{
+background:red;
+}
+
+#average{
+margin-top:15px;
+font-size:18px;
+font-weight:bold;
+}
+
+</style>
+
+<script>
+
+let students = [
+{id:101,name:"Anusha",course:"Computer Science",marks:85},
+{id:102,name:"Rahul",course:"Information Science",marks:78},
+{id:103,name:"Priya",course:"Artificial Intelligence",marks:92}
+];
+
+function displayStudents(){
+
+let table = document.getElementById("tableBody");
+table.innerHTML="";
+
+let total=0;
+
+for(let i=0;i<students.length;i++){
+
+let grade="";
+
+if(students[i].marks>=90){
+grade="A+";
+}
+else if(students[i].marks>=80){
+grade="A";
+}
+else if(students[i].marks>=70){
+grade="B";
+}
+else{
+grade="C";
+}
+
+let row="<tr>"+
+"<td>"+students[i].id+"</td>"+
+"<td>"+students[i].name+"</td>"+
+"<td>"+students[i].course+"</td>"+
+"<td>"+students[i].marks+"</td>"+
+"<td>"+grade+"</td>"+
+"<td><button class='deleteBtn' onclick='deleteStudent("+i+")'>Delete</button></td>"+
+"</tr>";
+
+table.innerHTML += row;
+
+total += students[i].marks;
+
+}
+
+let avg = (total/students.length).toFixed(2);
+
+document.getElementById("average").innerHTML="Average Marks : "+avg;
+
+}
+
+function addStudent(){
+
+let id=document.getElementById("id").value;
+let name=document.getElementById("name").value;
+let course=document.getElementById("course").value;
+let marks=document.getElementById("marks").value;
+
+if(id=="" || name=="" || course=="" || marks==""){
+alert("Please fill all fields");
+return;
+}
+
+students.push({
+id:id,
+name:name,
+course:course,
+marks:parseInt(marks)
+});
+
+displayStudents();
+
+document.getElementById("id").value="";
+document.getElementById("name").value="";
+document.getElementById("course").value="";
+document.getElementById("marks").value="";
+
+}
+
+function deleteStudent(index){
+
+students.splice(index,1);
+displayStudents();
+
+}
+
+</script>
+
+</head>
+
+<body onload="displayStudents()">
+
+<h1>Student Management System</h1>
+
+<div class="container">
+
+<h3>Add Student</h3>
+
+<input type="number" id="id" placeholder="Student ID">
+<input type="text" id="name" placeholder="Name">
+<input type="text" id="course" placeholder="Course">
+<input type="number" id="marks" placeholder="Marks">
+
+<br>
+
+<button onclick="addStudent()">Add Student</button>
+
+<table>
+
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>Course</th>
+<th>Marks</th>
+<th>Grade</th>
+<th>Action</th>
+</tr>
+
+<tbody id="tableBody"></tbody>
+
+</table>
+
+<div id="average"></div>
+
+</div>
+
+</body>
+</html>
